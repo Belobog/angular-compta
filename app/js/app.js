@@ -2,27 +2,27 @@
 
 /* App Module */
 
-var phonecatApp = angular.module('phonecatApp', [
+var comptaApp = angular.module('comptaApp', [
   'ngRoute',
   'phonecatAnimations',
-
   'phonecatControllers',
+  'saisirCourseController',
   'phonecatFilters',
   'phonecatServices'
 ]);
 
-phonecatApp.config(['$routeProvider',
+comptaApp.config(['$routeProvider',
   function($routeProvider) {
     $routeProvider.
-      when('/phones', {
-        templateUrl: 'partials/phone-list.html',
-        controller: 'PhoneListCtrl'
+      when('/saisir-course', {
+        templateUrl: 'views/saisir-course.html',
+        controller: 'SaisirCourseCtrl'
       }).
       when('/phones/:phoneId', {
         templateUrl: 'partials/phone-detail.html',
         controller: 'PhoneDetailCtrl'
       }).
       otherwise({
-        redirectTo: '/phones'
+        redirectTo: '/saisir-course'
       });
   }]);

@@ -42,7 +42,7 @@ saisirCourseController.controller('SaisirCourseCtrl', ['$scope',
                 if(prices[$scope.products[compteurProduit].category]){
                     prices[$scope.products[compteurProduit].category] = parseFloat(prices[$scope.products[compteurProduit].category])  + parseFloat($scope.products[compteurProduit].price);
                 }
-                else{
+                else if($scope.products[compteurProduit].category){
                     prices[$scope.products[compteurProduit].category] =  parseFloat($scope.products[compteurProduit].price);
                 }
             }

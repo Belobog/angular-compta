@@ -8,14 +8,18 @@
         <li ng-repeat="product in products track by $index">
           <input ng-model="product.name" placeholder="Nom">
           <input ng-model="product.category" placeholder="Categorie">
+          <input ng-model="product.quantity" placeholder="Quantité">
           <input ng-model="product.price" ng-click="addNewProduct($index)">
           <button ng-click="removeProduct($index)">delete</button>
         </li>
       </ul>
       <p>Prix total {{totalPrice()}}</p>
-      <p>Prix avant dernier article {{products[products.length-2].price}}</p>
-      <p>Prix premier article {{products[0].price}}</p>
-      <p>Nombre de produits    {{products.length}}</p>
+
+      <ul>
+        <li ng-repeat="(key, value) in categoryPrices()">
+          <p>Categorie :{{key}}  Prix :{{value}} </p>
+        </li>
+      </ul>
 
     </div>
   </div>

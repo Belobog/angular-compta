@@ -21,7 +21,7 @@ saisirCourseController.controller('SaisirCourseCtrl', ['$scope',
 
         // fonction permettant de supprimer le produit passé en paramètre
         $scope.removeProduct = function(index){
-            if(index > 0){
+            if(index > 0 || $scope.products.length > 1){
                 $scope.products.splice(index,1);
             }
             $scope.refreshCategories();

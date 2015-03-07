@@ -1,26 +1,29 @@
 <div class="container-fluid">
-  <div class="row">
+    <div class="row">
 
-    <div class="col-md-10">
-      <!--Body content-->
+        <div class="col-md-10">
+            <!--Body content-->
 
-      <ul>
-        <li ng-repeat="product in products track by $index">
-          <input ng-model="product.name" placeholder="Nom">
-          <input ng-model="product.category" placeholder="Categorie">
-          <input ng-model="product.quantity" placeholder="Quantité">
-          <input ng-model="product.price" ng-click="addNewProduct($index)">
-          <button ng-click="removeProduct($index)">delete</button>
-        </li>
-      </ul>
-      <p>Prix total {{totalPrice()}}</p>
+            <input ng-model="categoryFilter">
+            <ul>
+                <li ng-repeat="product in products track by $index">
+                    <input ng-model="product.name" placeholder="Nom">
+                    <input ng-model="product.category" placeholder="Categorie">
+                    <input ng-model="product.quantity" placeholder="Quantité">
+                    <input ng-model="product.price" ng-click="addNewProduct($index)">
+                    <button ng-click="removeProduct($index)">delete</button>
+                </li>
+            </ul>
+            <p>Prix total {{totalPrice()}}</p>
 
-      <ul>
-        <li ng-repeat="(key, value) in categoryPrices()">
-          <p>Categorie :{{key}}  Prix :{{value}} </p>
-        </li>
-      </ul>
+            <ul>
+                <li ng-repeat="category in categories | filter:categoryFilter">
+                    <p>Catégorie : {{category.name}} Quantité : {{category.quantity}} Montant : {{category.price}}</p>
+                </li>
+            </ul>
 
+            <p>{{categories.length}}</p>
+
+        </div>
     </div>
-  </div>
 </div>

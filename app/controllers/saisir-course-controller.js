@@ -9,12 +9,14 @@ saisirCourseController.controller('SaisirCourseCtrl', ['$scope',
 
 
         $scope.products = [{name:'',category:'',quantity:"",price:0.00.toFixed(2)}];
+        $scope.categories = [];
 
         // fonction permettant d'ajouter un nouveau produit
         $scope.addNewProduct = function(index){
             if(index == $scope.products.length - 1){
                 $scope.products.push({name:'',category:'',quantity:'',price:0.00.toFixed(2)});
             }
+            $scope.refreshCategories();
         };
 
         // fonction permettant de supprimer le produit passé en paramètre
@@ -22,6 +24,7 @@ saisirCourseController.controller('SaisirCourseCtrl', ['$scope',
             if(index > 0){
                 $scope.products.splice(index,1);
             }
+            $scope.refreshCategories();
         };
 
         // fonction permettant de calculer le prix total
@@ -33,20 +36,28 @@ saisirCourseController.controller('SaisirCourseCtrl', ['$scope',
             return somme.toFixed(2);
         };
 
-        // fonction permettant de calculer les prix par catégorie
-        $scope.categoryPrices = function(){
-            var prices = {};
-            var somme = 0.00;
-            for(var compteurProduit = 0; compteurProduit < $scope.products.length; compteurProduit++){
+        // fonction permettant de faire un refresh des catégories
+        $scope.refreshCategories = function(){
+            $scope.categories = [];
 
-                if(prices[$scope.products[compteurProduit].category]){
-                    prices[$scope.products[compteurProduit].category] = parseFloat(prices[$scope.products[compteurProduit].category])  + parseFloat($scope.products[compteurProduit].price);
+            for(var compteurProduit = 0; compteurProduit < $scope.products.length; compteurProduit++){
+                var nouvelleCategorie = true;
+                for(var compteurCategories = 0; compteurCategories < $scope.categories.length; compteurCategories++){
+                    if($scope.categories[compteurCategories].name == $scope.products[compteurProduit].category ){
+                        nouvelleCategorie = false;
+                        $scope.categories[compteurCategories].quantity = parseInt($scope.categories[compteurCategories].quantity) + parseInt($scope.products[compteurProduit].quantity);
+                        $scope.categories[compteurCategories].price = (parseFloat($scope.categories[compteurCategories].price) + parseFloat($scope.products[compteurProduit].price)).toFixed(2);
+                    }
                 }
-                else if($scope.products[compteurProduit].category){
-                    prices[$scope.products[compteurProduit].category] =  parseFloat($scope.products[compteurProduit].price);
+                if(nouvelleCategorie && $scope.products[compteurProduit].category){
+                    $scope.categories.push({
+                        name:$scope.products[compteurProduit].category,
+                        quantity:$scope.products[compteurProduit].quantity,
+                        price:$scope.products[compteurProduit].price});
                 }
+
+
             }
-            return prices;
-        }
+        };
 
     }]);

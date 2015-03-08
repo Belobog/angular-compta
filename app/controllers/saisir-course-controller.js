@@ -60,4 +60,16 @@ saisirCourseController.controller('SaisirCourseCtrl', ['$scope',
             }
         };
 
+        // fonction qui n'autorise que des valeurs numerique pour le champs quantity au moment du ng-change
+        $scope.validateQuantityOnChange = function(index,quantity){
+            $scope.products[index].quantity = quantity.replace(/[^\d]/,'');
+        };
+
+        // fonction valorise à 0 le champs quantity si vide au moment du ng-blur
+        $scope.validateQuantityOnBlur = function(index,quantity){
+            if($scope.products[index].quantity.length == 0){
+                $scope.products[index].quantity = 0;
+            }
+        };
+
     }]);

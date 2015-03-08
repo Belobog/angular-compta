@@ -8,9 +8,18 @@
             <ul>
                 <li ng-repeat="product in products track by $index">
                     <input ng-model="product.name" placeholder="Nom">
-                    <input ng-model="product.category" placeholder="Categorie" ng-change="refreshCategories()" ng-disabled="product.name.length == 0">
-                    <input ng-model="product.quantity" placeholder="Quantité" ng-change="refreshCategories()"  ng-disabled="product.category.length == 0">
-                    <input ng-model="product.price" ng-focus="addNewProduct($index)" ng-change="refreshCategories()" ng-disabled="product.quantity.length == 0">
+
+                    <input ng-model="product.category" placeholder="Categorie" ng-change="refreshCategories()"
+                           ng-disabled="product.name.length == 0">
+
+                    <input ng-model="product.quantity" placeholder="Quantité"
+                           ng-change="validateQuantityOnChange($index,product.quantity); refreshCategories()"
+                           ng-blur="validateQuantityOnBlur($index,product.quantity);refreshCategories()"
+                           ng-disabled="product.category.length == 0">
+
+                    <input ng-model="product.price" ng-focus="addNewProduct($index)" ng-change="refreshCategories()"
+                           ng-disabled="product.quantity == '0'">
+
                     <button ng-click="removeProduct($index)">delete</button>
                 </li>
             </ul>

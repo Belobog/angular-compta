@@ -65,10 +65,13 @@ saisirCourseController.controller('SaisirCourseCtrl', ['$scope',
             $scope.products[index].quantity = quantity.replace(/[^\d]/,'');
         };
 
-        // fonction valorise à 0 le champs quantity si vide au moment du ng-blur
+        // fonction valorise à 0 le champs quantity si vide et qui supprime les zero à gauche au moment du ng-blur
         $scope.validateQuantityOnBlur = function(index,quantity){
             if($scope.products[index].quantity.length == 0){
                 $scope.products[index].quantity = 0;
+            }
+            else{
+                $scope.products[index].quantity = parseInt($scope.products[index].quantity);
             }
         };
 

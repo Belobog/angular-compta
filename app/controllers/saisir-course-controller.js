@@ -67,7 +67,6 @@ saisirCourseController.controller('SaisirCourseCtrl', ['$scope',
 
         // fonction qui n'autorise que des valeurs numerique pour le champs quantity au moment du ng-change
         $scope.validateQuantityOnChange = function(index,quantity){
-            // $scope.products[index].quantity = quantity.replace(/[^\d]/,'');
             $scope.products[index].quantity = $scope.products[index].quantity.replace(/[^\d]/,'');
         };
 

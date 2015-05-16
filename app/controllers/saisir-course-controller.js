@@ -31,7 +31,8 @@ saisirCourseController.controller('SaisirCourseCtrl', ['$scope',
         $scope.totalPrice = function(){
             var somme = 0.00;
             for(var compteurProduit = 0; compteurProduit < $scope.products.length; compteurProduit++){
-                somme = parseFloat(somme) + parseFloat($scope.products[compteurProduit].price);
+                somme = parseFloat(somme) + (parseFloat($scope.products[compteurProduit].price)
+                * parseInt($scope.products[compteurProduit].quantity));
             }
             return somme.toFixed(2);
         };
@@ -50,15 +51,19 @@ saisirCourseController.controller('SaisirCourseCtrl', ['$scope',
                             + parseInt($scope.products[compteurProduit].quantity);
 
                         $scope.categories[compteurCategories].price =
-                            (parseFloat($scope.categories[compteurCategories].price)
-                            + parseFloat($scope.products[compteurProduit].price)).toFixed(2);
+                           (parseFloat($scope.categories[compteurCategories].price)
+                           + (parseFloat($scope.products[compteurProduit].price).toFixed(2)
+                           *parseInt($scope.products[compteurProduit].quantity)));
                     }
                 }
                 if(nouvelleCategorie && $scope.products[compteurProduit].category){
+                    var name = $scope.products[compteurProduit].category;
+                    var quantity = parseInt($scope.products[compteurProduit].quantity);
+                    var price = parseFloat($scope.products[compteurProduit].price).toFixed(2) * quantity;
                     $scope.categories.push({
-                        name:$scope.products[compteurProduit].category,
-                        quantity:$scope.products[compteurProduit].quantity,
-                        price:$scope.products[compteurProduit].price});
+                        name:name,
+                        quantity:quantity,
+                        price:price});
                 }
 
 

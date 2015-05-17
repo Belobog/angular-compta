@@ -11,8 +11,8 @@ var comptaApp = angular.module('comptaApp', [
   'phonecatServices'
 ]);
 
-comptaApp.config(['$routeProvider',
-  function($routeProvider) {
+comptaApp.config(['$routeProvider','$locationProvider',
+  function($routeProvider,$locationProvider) {
     $routeProvider.
       when('/saisir-course', {
         templateUrl: 'views/saisir-course.html',
@@ -25,4 +25,5 @@ comptaApp.config(['$routeProvider',
       otherwise({
         redirectTo: '/saisir-course'
       });
+      $locationProvider.html5Mode(true);
   }]);

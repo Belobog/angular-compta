@@ -19,9 +19,14 @@
     <script src="js/services.js"></script>
     <script src="controllers/saisir-course-controller.js"></script>
     <script src="controllers/home-controller.js"></script>
-    <base href="http://localhost/app/"/>
+    <base href="/app/"/>
 </head>
 <body>
+
+<header>
+    <a ng-href="home">Home</a>
+    <a ng-href="saisir-course">Saisir une course</a>
+</header>
 
 <div class="view-container">
     <div ng-view class="view-frame"></div>

@@ -8,6 +8,7 @@ var comptaApp = angular.module('comptaApp', [
     'phonecatControllers',
     'saisirCourseController',
     'homeController',
+    'inscriptionController',
     'phonecatFilters',
     'phonecatServices'
 ]);
@@ -22,6 +23,10 @@ comptaApp.config(['$routeProvider','$locationProvider',
             when('/saisir-course', {
                 templateUrl: 'views/saisir-course.html',
                 controller: 'SaisirCourseCtrl'
+            }).
+            when('/inscription', {
+                templateUrl: 'views/inscription.html',
+                controller: 'InscriptionCtrl'
             }).
             when('/phones/:phoneId', {
                 templateUrl: 'partials/phone-detail.html',

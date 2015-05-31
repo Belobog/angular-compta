@@ -53,13 +53,13 @@ saisirCourseController.controller('SaisirCourseCtrl', ['$scope',
                         $scope.categories[compteurCategories].price =
                            (parseFloat($scope.categories[compteurCategories].price)
                            + (parseFloat($scope.products[compteurProduit].price).toFixed(2)
-                           *parseInt($scope.products[compteurProduit].quantity)));
+                           *parseInt($scope.products[compteurProduit].quantity))).toFixed(2);
                     }
                 }
                 if(nouvelleCategorie && $scope.products[compteurProduit].category){
                     var name = $scope.products[compteurProduit].category;
                     var quantity = parseInt($scope.products[compteurProduit].quantity);
-                    var price = parseFloat($scope.products[compteurProduit].price).toFixed(2) * quantity;
+                    var price = (parseFloat($scope.products[compteurProduit].price).toFixed(2) * quantity).toFixed(2);
                     $scope.categories.push({
                         name:name,
                         quantity:quantity,
